@@ -1,3 +1,7 @@
+variable "public_key" {
+  description = "SSH Public Key"
+  type        = string
+}
 resource "azurerm_resource_group" "lab" {
   name     = "vinay-test"
   location = "East US"
@@ -98,9 +102,9 @@ resource "azurerm_linux_virtual_machine" "linux" {
   ]
 
   admin_ssh_key {
-    username = "azureadmin"
-    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD8sk//V55L+T3ig8xhtrDcTnlNz297dIx6XUlguDV4nM2mh+Zh7skNzz3SSa5o3SZdJofrfsEQ+0rGK4oulzcJocPwo0GGhxChTIIqQbFXJ1vQynIULGjX0nI4zqO6lc98WsU1KM7Cms8gLHUYsPWUoYir8LKkmwnFrUouz+x8/lGpqjekLfbwY5Xi/ziGg04Oeps1KO8ZumnTw55BxDHHv1Q0wuUwWqfhmX1JVWohDERcx97fTVvxWyCpK4N5Pcwwl0Jb+LaDA9sUTuak5SFnWNJmYNv/4DVXwiCmzN1FezxCtOa+nKWxu+IMlKpSIOdlheDxpdIWGP+VslFVHjWcslNvPM/H0Ff2bhI23dLv2qad6VkDrP8yD/h+cXLlQh8f3wNsBuHkj28/ty2NbWYuY0S2h9wvIs4y/KZF8LFRJ01LrLsqK+ney7qJ9nQv82VRZ2XjBVOsxf1OFgm4x8Yzu75sd1GusTh3sMtkw4Hf9BohwujkZeghLEH6n3vKRFdjK/YkxIt3Ud1Y6xnKwrKwOU18sv5aP2UEQxaZtcdPszhQ+EEVNudKNPs81OhTvyaopGtyCqkxyLIuEKaJwuF9XSsZ+W2uRZwpkQ/rUiU0zowebxO46iMLH9Zu5ixfZB7xFTWJf40JzVIUNIGaRy0cGvbLpKKsi5Vky8L0oruAuw== vinay@Vinnu"
-  }
+  username   = "azureadmin"
+  public_key = var.public_key
+}
 
   os_disk {
     caching              = "ReadWrite"
